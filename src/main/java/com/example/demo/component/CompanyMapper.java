@@ -10,19 +10,19 @@ public class CompanyMapper {
 		if (dto == null || entity == null) {
 			return; // 'return;' in 'void' means to stop the function right away
 		}
-		entity.setCompanyName(dto.getName());
-		entity.setCompanyAddress(dto.getAddress());
-		entity.setCreateAt(dto.getCreateAt());
+		entity.setCompanyName(dto.getCompanyName());
+		entity.setCompanyAddress(dto.getCompanyAddress());
+		entity.setCreatedAt(dto.getCreatedAt());
 	}
 	public CompanyEntity toEntity(CompanyDTO dto) {
 		if(dto == null) {
 			return null;
 		}
 		CompanyEntity entity = new CompanyEntity();
-		entity.setCompanyId(dto.getId()); // thừa
-		entity.setCompanyName(dto.getName());
-		entity.setCompanyAddress(dto.getAddress());
-		entity.setCreateAt(dto.getCreateAt());
+		entity.setId(dto.getId()); // thừa
+		entity.setCompanyName(dto.getCompanyName());
+		entity.setCompanyAddress(dto.getCompanyAddress());
+		entity.setCreatedAt(dto.getCreatedAt());
 		return entity;
 	}
 
@@ -31,10 +31,10 @@ public class CompanyMapper {
 			return null;
 		}
 		CompanyDTO dto = new CompanyDTO();
-		dto.setId(entity.getCompanyId());
-		dto.setName(entity.getCompanyName());
-		dto.setAddress(entity.getCompanyAddress());
-		dto.setCreateAt(entity.getCreateAt());
+		dto.setId(entity.getId());
+		dto.setCompanyName(entity.getCompanyName());
+		dto.setCompanyAddress(entity.getCompanyAddress());
+		dto.setCreatedAt(entity.getCreatedAt());
 		return dto;
 	}
 

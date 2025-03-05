@@ -11,22 +11,22 @@ public class EmployeeMapper {
 		if ( dto == null || entity == null) {
 			return;
 		}
-		entity.setEmployeeName(dto.getFullName());
-		entity.setEmployeeEmail(dto.getEmail());
-		entity.setEmployeePhoneNumber(dto.getPhoneNumber());
-		entity.setEmployeePosition(dto.getPosition());
-		entity.setCreateAt(dto.getCreateAt());
+		entity.setEmployeeName(dto.getEmployeeFullName());
+		entity.setEmployeeEmail(dto.getEmployeeEmail());
+		entity.setEmployeePhoneNumber(dto.getEmployeePhoneNumber());
+		entity.setEmployeePosition(dto.getEmployeePosition());
+		entity.setCreatedAt(dto.getCreateAt());
 	}
 	public EmployeeEntity toEntity(EmployeeDTO dto) {
 		if(dto==null) {
 			return null;
 		}
 		EmployeeEntity entity = new EmployeeEntity();
-		entity.setEmployeePosition(dto.getPosition());
-		entity.setEmployeeEmail(dto.getEmail());
-		entity.setEmployeeName(dto.getFullName());
-		entity.setEmployeePhoneNumber(dto.getPhoneNumber());
-		entity.setCreateAt(dto.getCreateAt());
+		entity.setEmployeePosition(dto.getEmployeePosition());
+		entity.setEmployeeEmail(dto.getEmployeeEmail());
+		entity.setEmployeeName(dto.getEmployeeFullName());
+		entity.setEmployeePhoneNumber(dto.getEmployeePhoneNumber());
+		entity.setCreatedAt(dto.getCreateAt());
 
 		return entity;
 	}
@@ -35,12 +35,12 @@ public class EmployeeMapper {
 			return null;
 		}
 		EmployeeDTO dto = new EmployeeDTO();
-		dto.setId(entity.getEmployeeId());
-		dto.setPhoneNumber(entity.getEmployeePhoneNumber());
-		dto.setEmail(entity.getEmployeeEmail());
-		dto.setFullName(entity.getEmployeeName());
-		dto.setPosition(entity.getEmployeePosition());
-		dto.setCreateAt(entity.getCreateAt());
+		dto.setId(entity.getId());
+		dto.setEmployeePhoneNumber(entity.getEmployeePhoneNumber());
+		dto.setEmployeeEmail(entity.getEmployeeEmail());
+		dto.setEmployeeFullName(entity.getEmployeeName());
+		dto.setEmployeePosition(entity.getEmployeePosition());
+		dto.setCreatedAt(entity.getCreatedAt());
 
 		return dto;
 	}

@@ -11,12 +11,14 @@ import java.util.List;
 
 public interface EmployeeService {
 
-	EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) throws CompanyNotFoundException;
+	EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) throws CompanyNotFoundException,DepartmentNotFoundException;
+	// EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) throws CompanyNotFoundException, DepartmentNotFoundException;
 	List<EmployeeDTO> getAllEmployees();
 
 	EmployeeDTO getEmployeeById(String id) throws EmployeeNotFoundException;
 
-	EmployeeDTO updateEmployee(String id, EmployeeDTO employeeDTO) throws EmployeeNotFoundException, CompanyNotFoundException; // ket hop giua save va get
+	EmployeeDTO updateEmployee(String id, EmployeeDTO employeeDTO) throws EmployeeNotFoundException, CompanyNotFoundException,DepartmentNotFoundException; // ket hop giua save va get
+	// EmployeeDTO updateEmployee(String id, EmployeeDTO employeeDTO) throws EmployeeNotFoundException, CompanyNotFoundException, DepartmentNotFoundException;
 	void deleteEmployee(String id) throws EmployeeNotFoundException; // void ko can tra ve
 	List<EmployeeDTO> getAllEmployeesByCompanyId(String companyId) throws CompanyNotFoundException;
 	List<EmployeeDTO> getAllEmployeesByDepartmentId(String departmentId) throws DepartmentNotFoundException;
