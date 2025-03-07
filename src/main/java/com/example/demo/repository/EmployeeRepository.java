@@ -18,21 +18,15 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, String
 	@Query(value = "select * from employees e where e.department_id = :departmentId", nativeQuery = true)
 	List<EmployeeEntity> findAllByDepartmentId(@Param("departmentId") String departmentId);
 
-	//	@Query(value = """
-//        SELECT e FROM EmployeeEntity e
-//        WHERE
-//            (:keyword IS NULL OR :keyword = '' OR
-//             LOWER(e.employeeName) LIKE %:keyword% OR
-//             LOWER(e.employeeEmail) LIKE %:keyword% OR
-//             LOWER(e.employeePhoneNumber) LIKE %:keyword%)
-//        """)
+	//  chít chít
+	// 8-3 vui vẻ
 	@Query(value = """
        SELECT * FROM employees e 
        WHERE 
            (:keyword IS NULL OR :keyword = '' OR 
-            LOWER(e.employee_name) LIKE LOWER(:keyword) OR 
-            LOWER(e.employee_email) LIKE LOWER(:keyword) OR 
-            LOWER(e.employee_phone_number) LIKE LOWER(:keyword))
+            LOWER(e.employee_name) LIKE LOWER(CONCAT('%', :keyword, '%')) OR 
+            LOWER(e.employee_email) LIKE LOWER(CONCAT('%', :keyword, '%')) OR 
+            LOWER(e.employee_phone_number) LIKE LOWER(CONCAT('%', :keyword, '%')))
        """, nativeQuery = true)
 	Page<EmployeeEntity> searchEmployee(Pageable pageable, @Param("keyword") String keyword);
 
