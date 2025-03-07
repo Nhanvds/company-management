@@ -4,6 +4,8 @@ import com.example.demo.component.DepartmentMapper;
 import com.example.demo.component.EmployeeMapper;
 import com.example.demo.dto.CompanyDTO;
 import com.example.demo.entity.CompanyEntity;
+import com.example.demo.entity.DepartmentEntity;
+import com.example.demo.entity.EmployeeEntity;
 import com.example.demo.exception.CompanyNotFoundException;
 import com.example.demo.repository.CompanyRepository;
 import com.example.demo.repository.DepartmentRepository;
@@ -56,31 +58,43 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public CompanyDTO getCompanyById(String id) throws CompanyNotFoundException {
-//---------------------------------------------
-	Optional<CompanyEntity> companyEntity = companyRepository.findById(id);
-		if(companyEntity.isPresent()) {
-		}
-		return null;
+
+		CompanyEntity companyEntity = companyRepository.findById(id)
+				.orElseThrow(() ->new CompanyNotFoundException("Company not found"));
+		List<EmployeeEntity> employeeEntities = employeeRepository.findAllByCompanyId(companyEntity.getId());
+		CompanyDTO companyDTO = companyMapper.toDTO(companyEntity);
+		companyDTO.setEmployees(
+				employeeEntities.stream()
+						.map(employeeMapper::toDTO)
+						.collect(Collectors.toList())
+
+		);
+		List<DepartmentEntity> departmentEntities = departmentRepository.findAllByCompanyId(companyEntity.getId());
+		companyDTO.setDepartments(
+				departmentEntities.stream()
+						.map(departmentMapper::toDTO)
+						.collect(Collectors.toList())
+		);
+		return companyDTO;
+	}
+	//---------------------------------------------
+	@Override
+	public CompanyDTO updateCompany(String id, CompanyDTO companyDTO) throws CompanyNotFoundException  {
+		CompanyEntity companyEntity = companyRepository.findById(id)
+				.orElseThrow(() -> new CompanyNotFoundException("Company not found"));
+		// map từ công ty mới sang công ty đã tồn tại
+		companyMapper.updateEntity(companyDTO,companyEntity);
+		// lưu vào trong db
+		companyRepository.save(companyEntity);
+		// những phương thức giao tiếp với db thông qua repository phải là entity
+		return companyMapper.toDTO(companyEntity);
 	}
 
 	@Override
-	public CompanyEntity updateCompany(String id, CompanyEntity company) {
-		Optional<CompanyEntity> companyEntity= companyRepository.findById(id);
-		if(companyEntity.isPresent()) {
-			CompanyEntity newCompany= companyEntity.get();
-			newCompany.setCompanyName(company.getCompanyName());
-			newCompany.setCompanyAddress(company.getCompanyAddress());
-			companyRepository.save(newCompany); // lưu vào db
-			return newCompany;
-		}
-		return null;
+	public void deleteCompany(String id) throws CompanyNotFoundException{
+		CompanyEntity companyEntity = companyRepository.findById(id)
+				.orElseThrow(()->new CompanyNotFoundException("Company not found"));
+		companyRepository.delete(companyEntity);
 	}
 
-	@Override
-	public void deleteCompany(String id) {
-		Optional<CompanyEntity> companyEntity= companyRepository.findById(id);
-		if(companyEntity.isPresent()) {
-			companyRepository.deleteById(id);
-		}
-	}
 }

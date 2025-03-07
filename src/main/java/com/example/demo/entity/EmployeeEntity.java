@@ -1,17 +1,11 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "employees")
-public class EmployeeEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	private String employeeId;
+public class EmployeeEntity extends BaseEntity {
 
 	@Column(name = "employee_name",nullable = false)
 	private String employeeName;
@@ -22,9 +16,6 @@ public class EmployeeEntity {
 	private String employeePhoneNumber;
 	@Column(name = "employee_position",nullable = false)
 	private String employeePosition;
-	@Column(name = "created_at")
-	@CreationTimestamp
-	private LocalDateTime createAt;
 
 	//ref
 	// 1.dùng joincolumn để thiết lập khóa ngoại trong db đặt tên là gì,
@@ -46,13 +37,7 @@ public class EmployeeEntity {
 
 	//----------------------------
 	//getters & setters
-	public String getEmployeeId() {
-		return employeeId;
-	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
 
 	public String getEmployeeName() {
 		return employeeName;
@@ -86,12 +71,12 @@ public class EmployeeEntity {
 		this.employeePosition = employeePosition;
 	}
 
-	public LocalDateTime getCreateAt() {
-		return createAt;
+	public DepartmentEntity getDepartment() {
+		return department;
 	}
 
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
+	public void setDepartment(DepartmentEntity department) {
+		this.department = department;
 	}
 
 	public CompanyEntity getCompany() {
@@ -100,13 +85,5 @@ public class EmployeeEntity {
 
 	public void setCompany(CompanyEntity company) {
 		this.company = company;
-	}
-
-	public DepartmentEntity getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(DepartmentEntity department) {
-		this.department = department;
 	}
 }

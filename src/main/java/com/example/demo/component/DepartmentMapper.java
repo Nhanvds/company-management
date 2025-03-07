@@ -10,8 +10,8 @@ public class DepartmentMapper {
 		if(dto==null || entity ==null) {
 			return;
 		}
-		entity.setDepartmentName(dto.getName());
-		entity.setCreateAt(dto.getCreateAt());
+		entity.setDepartmentName(dto.getDepartmentName());
+		entity.setCreatedAt(dto.getCreatedAt());
 	}
 
 	public DepartmentEntity toEntity(DepartmentDTO dto){
@@ -19,9 +19,9 @@ public class DepartmentMapper {
 			return null;
 		}
 		DepartmentEntity entity = new DepartmentEntity();
-		entity.setDepartmentId(dto.getId());
-		entity.setDepartmentName(dto.getName());
-		entity.setCreateAt(dto.getCreateAt());
+		entity.setId(dto.getId());
+		entity.setDepartmentName(dto.getDepartmentName());
+		entity.setCreatedAt(dto.getCreatedAt());
 
 		return entity;
 	}
@@ -31,9 +31,10 @@ public class DepartmentMapper {
 			return null;
 		}
 		DepartmentDTO dto = new DepartmentDTO();
-		dto.setId(entity.getDepartmentId());
-		dto.setName(entity.getDepartmentName());
-		dto.setCreateAt(entity.getCreateAt());
+		dto.setId(entity.getId());
+		dto.setDepartmentName(entity.getDepartmentName());
+		dto.setCreatedAt(entity.getCreatedAt());
+		dto.setModifiedAt(entity.getModifiedAt());
 
 		return dto;
 	}

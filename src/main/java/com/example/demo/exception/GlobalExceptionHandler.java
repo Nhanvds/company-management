@@ -12,6 +12,11 @@ import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+	@ExceptionHandler(DataConflictException.class)
+	public ResponseEntity<Object> handleDataConflictException(DataConflictException ex) {
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	}
+
 	// xu ly loi ko tim thay cty
 	@ExceptionHandler(CompanyNotFoundException.class)
 	public ResponseEntity<Object> handleCompanyNotFoundException(CompanyNotFoundException ex) {

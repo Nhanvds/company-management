@@ -1,18 +1,19 @@
 package com.example.demo.dto;
 
-import jakarta.persistence.Column;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class CompanyDTO {
 
 	private String id;
-	private String name;
-	private String address;
+	private String companyName;
+	private String companyAddress;
 	private List<EmployeeDTO> employees;
-	private LocalDateTime createAt;
+	private List<DepartmentDTO> departments;
+	private LocalDateTime createdAt;
+	private LocalDateTime modifiedAt;
+
+
 
 	public String getId() {
 		return id;
@@ -22,20 +23,20 @@ public class CompanyDTO {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCompanyName(String name) {
+		this.companyName = name;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getCompanyAddress() {
+		return companyAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCompanyAddress(String companyAddress) {
+		this.companyAddress = companyAddress;
 	}
 
 	public List<EmployeeDTO> getEmployees() {
@@ -46,12 +47,27 @@ public class CompanyDTO {
 		this.employees = employees;
 	}
 
-	public LocalDateTime getCreateAt() {
-		return createAt;
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
+	public List<DepartmentDTO> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(List<DepartmentDTO> departments) {
+		this.departments = departments;
+	}
+
+	public LocalDateTime getModifiedAt() {
+		return modifiedAt;
+	}
+
+	public void setModifiedAt(LocalDateTime modifiedAt) {
+		this.modifiedAt = modifiedAt;
+	}
 }
