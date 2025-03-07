@@ -41,6 +41,7 @@ public class EmployeeMapper {
 		dto.setEmployeeFullName(entity.getEmployeeName());
 		dto.setEmployeePosition(entity.getEmployeePosition());
 		dto.setCreatedAt(entity.getCreatedAt());
+		dto.setModifiedAt(entity.getModifiedAt());
 
 		return dto;
 	}

@@ -96,4 +96,5 @@ public class CompanyServiceImpl implements CompanyService {
 				.orElseThrow(()->new CompanyNotFoundException("Company not found"));
 		companyRepository.delete(companyEntity);
 	}
+
 }

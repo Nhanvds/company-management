@@ -35,6 +35,7 @@ public class CompanyMapper {
 		dto.setCompanyName(entity.getCompanyName());
 		dto.setCompanyAddress(entity.getCompanyAddress());
 		dto.setCreatedAt(entity.getCreatedAt());
+		dto.setModifiedAt(entity.getModifiedAt());
 		return dto;
 	}
 

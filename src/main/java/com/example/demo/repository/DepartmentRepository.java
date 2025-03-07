@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public interface DepartmentRepository extends JpaRepository<DepartmentEntity, String> {
-	@Query(value = "select * from departments d where d.company_id = :companyId",nativeQuery = true)
+	@Query(value = "select * from departments d where d.company_id = :companyId", nativeQuery = true)
 	List<DepartmentEntity> findAllByCompanyId(@Param("companyId") String companyId);
 };
 

@@ -34,6 +34,7 @@ public class DepartmentMapper {
 		dto.setId(entity.getId());
 		dto.setDepartmentName(entity.getDepartmentName());
 		dto.setCreatedAt(entity.getCreatedAt());
+		dto.setModifiedAt(entity.getModifiedAt());
 
 		return dto;
 	}
